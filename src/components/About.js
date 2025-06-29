@@ -6,6 +6,12 @@ import resume from '../assets/resume.pdf';
 const About = () => {
   const sectionRef = useRef();
   const [isVisible, setIsVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState('');
+
+  const fullText = `أنا محمد صلاح ناهض صلاح العمصي، مطور ويب وتطبيقات، أمتلك شغفًا ببناء واجهات جذابة وسريعة باستخدام أحدث التقنيات. أركز على البساطة، السرعة، وتجربة المستخدم. لدي خبرة في تصميم وتطوير تطبيقات فعالة عبر Flutter و React. أؤمن أن التقنية وسيلة لتحسين حياة الناس، وأسعى باستمرار لتعلم وتطوير مهاراتي لمواكبة كل جديد. أطمح أن أكون جزءاً من فريق مبدع يسعى لصنع تأثير حقيقي.`;
+  const shortText = fullText.slice(0, 120) + '...';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -16,16 +22,33 @@ const About = () => {
       },
       { threshold: 0.2 }
     );
-  
+
     const current = sectionRef.current;
-  
     if (current) observer.observe(current);
-    
-    return () => {
-      if (current) observer.unobserve(current);
-    };    
+    return () => current && observer.unobserve(current);
   }, []);
-  
+
+  const handleResumeDownload = async () => {
+    setIsDownloading(true);
+    setDownloadError('');
+    try {
+      const res = await fetch(resume, { method: 'HEAD' });
+      if (res.ok) {
+        const link = document.createElement('a');
+        link.href = resume;
+        link.setAttribute('download', 'resume.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else {
+        throw new Error('Resume not found');
+      }
+    } catch (err) {
+      setDownloadError('⚠️ الملف غير موجود حاليًا. حاول لاحقًا.');
+    } finally {
+      setTimeout(() => setIsDownloading(false), 1200);
+    }
+  };
 
   return (
     <section id="about" ref={sectionRef} className={`about-section ${isVisible ? 'fade-in' : ''}`}>
@@ -34,11 +57,17 @@ const About = () => {
       </div>
       <div className="about-right">
         <h2>About Me</h2>
-        <p>
-          أنا محمد صلاح ناهض صلاح العمصي، مطور ويب وتطبيقات، أمتلك شغفًا ببناء واجهات جذابة وسريعة باستخدام أحدث التقنيات.
-          أركز على البساطة، السرعة، وتجربة المستخدم.
+        <p className="bio-text">
+          {expanded ? fullText : shortText}
         </p>
-        <a href={resume} download className="download-btn">Download Resume</a>
+        <button className="read-toggle" onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'Read Less' : 'Read More'}
+        </button>
+        <br />
+        <button className="download-btn" onClick={handleResumeDownload}>
+          {isDownloading ? 'Downloading...' : 'Download Resume'}
+        </button>
+        {downloadError && <p className="error-msg">{downloadError}</p>}
       </div>
     </section>
   );

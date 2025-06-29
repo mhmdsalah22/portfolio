@@ -1,83 +1,120 @@
 .scroll-progress {
-    height: 4px;
-    background: #f39c12;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1001;
-    transition: width 0.2s ease;
-  }
-  
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--bg-color, #ffffff);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 10%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.3s ease;
-    transform: translateY(-100%);
-    animation: slideDown 0.5s ease-out forwards;
-  
-  }
-  @keyframes slideDown {
-    to {
-      transform: translateY(0);
-    }
-  }
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: var(--text-color, #333);
-    transition: color 0.3s;
-  }
-  
-  .logo:hover {
-    color: #f39c12;
-  }
-  
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    align-items: center;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    padding: 8px 12px;
-    color: var(--text-color, #333);
-    transition: all 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    background-color: rgba(243, 156, 18, 0.1);
-    border-radius: 6px;
-    color: #f39c12;
-  }
-  
-  .nav-links a.active {
-    background-color: #f39c12;
-    color: white;
-    border-radius: 6px;
-  }
-  
-  .theme-toggle {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: var(--text-color, #333);
-  }
-  
-  body.dark {
-    --bg-color: #222;
-    --text-color: #f0f0f0;
-    background-color: #222;
-    color: #f0f0f0;
-  }
-  
+  height: 4px;
+  background: #f39c12;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  transition: width 0.2s ease;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 90%;
+  z-index: 1000;
+  background-color: var(--bg-color, #ffffff);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 5%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar.with-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar.hide {
+  transform: translateY(-100%);
+}
+
+.navbar.show {
+  transform: translateY(0);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-color, #333);
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: #f39c12;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  padding: 8px 12px;
+  color: var(--text-color, #333);
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(243, 156, 18, 0.1);
+  border-radius: 6px;
+  color: #f39c12;
+}
+
+.nav-links a.active {
+  background-color: #f39c12;
+  color: white;
+  border-radius: 6px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color, #333);
+}
+
+body.dark {
+  --bg-color: #222;
+  --text-color: #f0f0f0;
+  background-color: #222;
+  color: #f0f0f0;
+}
+
+.scroll-circle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-percent {
+  position: absolute;
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+}
+
+.progress-ring__circle {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+section:first-of-type {
+  padding-top: 100px;
+}
