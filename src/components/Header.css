@@ -13,8 +13,8 @@
 }
 
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
@@ -23,7 +23,6 @@
   font-size: 2.2rem;
   line-height: 1.6;
   animation: fadeIn 1s ease-in;
-  position: relative;
 }
 
 .typewriter::after {
@@ -33,35 +32,56 @@
   color: #f8cdda;
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
+@keyframes blink { 50% { opacity: 0; } }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0);   }
 }
 
+/* avatar ------------------------------------------------------------------*/
 .avatar {
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform .3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .header:hover .avatar {
   transform: perspective(600px) rotateX(var(--tiltY)) rotateY(var(--tiltX));
 }
 
-.avatar.popped {
-  animation: popout 0.3s ease;
-}
+.avatar.popped { animation: popout .3s ease; }
 
 @keyframes popout {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1);    }
 }
+
+/* ─────────────── responsive (≤ 768 px) ─────────────── */
+/* ───────── responsive (≤ 768 px) ───────── */
+@media (max-width: 768px) {
+  /* الصورة أولاً ثم النص */
+  .header {
+    flex-direction: column-reverse;   /* ← كان column فأصبح column-reverse */
+    justify-content: center;
+    text-align: center;
+    padding: 60px 5%;
+    height: auto;
+  }
+
+  .header-left h1 {
+    font-size: 1.8rem;
+    margin-top: 24px;    /* مسافة فوق النص بعد الصورة */
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 16px; /* مسافة أسفل الصورة */
+  }
+}
+

@@ -5,7 +5,7 @@ const skills = [
   { name: 'HTML & CSS', level: 90 },
   { name: 'JavaScript', level: 80 },
   { name: 'ReactJS', level: 85 },
-  { name: 'Flutter',  level: 99 },
+  { name: 'Flutter', level: 99 },
 ];
 
 const Skills = () => {
@@ -46,12 +46,14 @@ const Skills = () => {
         <h2>My Skills</h2>
         <p>
           لدي خبرة قوية في بناء الواجهات المتجاوبة باستخدام ReactJS، CSS Grid وFlexbox،
-          بالإضافة إلى كتابة كود نظيف ومحسن.<br/>
+          بالإضافة إلى كتابة كود نظيف ومحسن.<br />
           أيضًا لدي خبرة في بناء تطبيقات Android وiOS باستخدام Flutter.
         </p>
 
         <a
-          href="mailto:mhmdsalah2022@gmail.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=mhmdsalah2022@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="contact-btn"
         >
           Contact Me
