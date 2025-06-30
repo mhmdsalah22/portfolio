@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Projects.css';
 
 function Projects({ data }) {
-  /* ────────── حالة المودال ────────── */
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [slide, setSlide] = useState(0);
@@ -22,7 +21,6 @@ function Projects({ data }) {
       s === 0 ? (selected.images?.length || 1) - 1 : s - 1
     );
 
-  /* إغلاق بالـ Esc */
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
@@ -33,7 +31,6 @@ function Projects({ data }) {
     <section className="projects-section">
       <h2>Projects</h2>
 
-      {/* شبكة الكروت */}
       <div className="projects-grid">
         {data.map((p, i) => (
           <div key={i} className="project-card" onClick={() => openProject(p)}>
@@ -44,7 +41,6 @@ function Projects({ data }) {
         ))}
       </div>
 
-      {/* ────────── المودال ────────── */}
       {open && selected && (
         <div className="modal" onClick={closeModal}>
           <div
@@ -53,7 +49,6 @@ function Projects({ data }) {
           >
             <button className="close-btn" onClick={closeModal}>✕</button>
 
-            {/* Carousel */}
             <div className="carousel">
               <button className="nav prev" onClick={prev}>‹</button>
               <img

@@ -1,4 +1,3 @@
-/* layout */
 .skills-section {
   display: flex;
   justify-content: space-between;
@@ -24,7 +23,6 @@
   font-weight: bold;
 }
 
-/* progress bar */
 .bar-bg {
   height: 12px;
   background: #e0e0e0;
@@ -43,7 +41,6 @@
   transition: width 1.2s ease;
 }
 
-/* hover effect + glow */
 .bar-bg:hover {
   transform: scaleY(1.1);
   box-shadow: 0 0 12px rgba(243, 156, 18, .5);
@@ -53,7 +50,6 @@
   box-shadow: 0 0 12px rgba(243, 156, 18, .8);
 }
 
-/* custom tooltip from data-tooltip */
 .bar-bg::after {
   content: attr(data-tooltip);
   position: absolute;

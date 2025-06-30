@@ -60,7 +60,6 @@ const Contact = () => {
         <p className="confirmation">✔️ تم إرسال رسالتك بنجاح!</p>
       ) : (
         <form onSubmit={handleSubmit} className="contact-form" noValidate>
-          {/* Name */}
           <label>
             Name:
             <input
@@ -73,7 +72,6 @@ const Contact = () => {
             {errors.name && <span className="error">{errors.name}</span>}
           </label>
 
-          {/* Email */}
           <label>
             Email:
             <input

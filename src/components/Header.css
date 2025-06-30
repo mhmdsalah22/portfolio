@@ -39,7 +39,6 @@
   to   { opacity: 1; transform: translateY(0);   }
 }
 
-/* avatar ------------------------------------------------------------------*/
 .avatar {
   width: 280px;
   height: 280px;
@@ -61,12 +60,10 @@
   100% { transform: scale(1);    }
 }
 
-/* ─────────────── responsive (≤ 768 px) ─────────────── */
-/* ───────── responsive (≤ 768 px) ───────── */
+
 @media (max-width: 768px) {
-  /* الصورة أولاً ثم النص */
   .header {
-    flex-direction: column-reverse;   /* ← كان column فأصبح column-reverse */
+    flex-direction: column-reverse;   
     justify-content: center;
     text-align: center;
     padding: 60px 5%;
@@ -75,13 +72,13 @@
 
   .header-left h1 {
     font-size: 1.8rem;
-    margin-top: 24px;    /* مسافة فوق النص بعد الصورة */
+    margin-top: 24px;   
   }
 
   .avatar {
     width: 200px;
     height: 200px;
-    margin-bottom: 16px; /* مسافة أسفل الصورة */
+    margin-bottom: 16px; 
   }
 }
 
