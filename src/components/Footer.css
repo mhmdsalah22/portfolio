@@ -50,23 +50,46 @@
 }
 
 .scroll-top-btn {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background: #f39c12;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.4rem;
-  padding: 10px 14px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
-  transition: background .3s;
-  z-index: 1000;
+}
+
+.scroll-top-btn .arrow {
+  position: absolute;
+  font-size: 1.2rem;
+  pointer-events: none;
 }
 
 .scroll-top-btn:hover {
   background: #d35400;
+}
+
+.ring{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(-90deg);
+}
+
+
+.ring-bg {
+  stroke: #ffffff33;
+  stroke-dasharray:88;
+  stroke-dashoffset: 0;
+}
+
+.ring-bar {
+  stroke: #d35400;
+  stroke-dasharray:88;
+  stroke-dashoffset:88;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .2s linear;
 }
 
 @media(max-width:480px) {

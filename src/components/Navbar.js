@@ -1,47 +1,43 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Navbar.css';
 
 const Navbar = ({ onNavigate }) => {
+  const [darkMode, setDarkMode] = useState(() =>
+    localStorage.getItem('theme') === 'dark'
+  );
   const [activeSection, setActiveSection] = useState('');
   const [scrollPercent, setScrollPercent] = useState(0);
-  const [darkMode, setDarkMode] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  
+  const lastScroll = useRef(0); 
+    useEffect(() => {
+    document.body.classList.toggle('dark', darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const winHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = (scrollTop / winHeight) * 100;
-      setScrollPercent(scrolled);
-    
-      const sections = document.querySelectorAll('section');
-      sections.forEach((sec) => {
+      const y = window.scrollY;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollPercent((y / h) * 100);
+  
+      document.querySelectorAll('section').forEach((sec) => {
         const top = sec.offsetTop - 100;
         const bottom = top + sec.offsetHeight;
-        if (scrollTop >= top && scrollTop < bottom) {
-          setActiveSection(sec.id || '');
-        }
+        if (y >= top && y < bottom) setActiveSection(sec.id || '');
       });
-    
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        setShowNavbar(false); 
-      } else {
-        setShowNavbar(true); 
-      }
-      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+  
+      if (y > lastScroll.current && y > 100) setShowNavbar(false);
+      else setShowNavbar(true);
+  
+      lastScroll.current = y;     
     };
-    
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark');
-  };
+  const toggleTheme = () => setDarkMode(prev => !prev);
 
   return (
     <>
